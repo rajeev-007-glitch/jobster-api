@@ -1,10 +1,10 @@
-const { BadRequestError } = require('../errors');
+const { BadRequestError } = require("../errors")
 
 const testUser = (req, res, next) => {
   if (req.user.testUser) {
-    throw new BadRequestError('Test User. Read Only!');
+    throw new BadRequestError("Test user Read-Only")
   }
-  next();
-};
+  next()
+}
 
-module.exports = testUser;
+module.exports = testUser

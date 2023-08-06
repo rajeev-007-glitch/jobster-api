@@ -1,20 +1,21 @@
 const express = require("express")
 const router = express.Router()
-const authenticator = require("../middleware/authentication")
+const authenticateUser = require("../middleware/authentication")
 const testUser = require("../middleware/testUser")
 const { register, login, updateUser } = require("../controllers/auth")
 
-const rateLimiter = require("express-rate-limit")
-const apiLimiter = rateLimiter({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 10,
+const apiRateLimiter = require("express-rate-limit")
+
+const rateLimiter = apiRateLimiter({
+  windowMs: 10 * 60 * 1000,
+  max: 5,
   message: {
-    msg: "Too many requests from this IP, please try again after 15 minutes",
+    msg: "Too many request from this IP please try again after 10 mins...",
   },
 })
 
-router.post("/register", apiLimiter, register)
-router.post("/login", apiLimiter, login)
-router.patch("/updateUser", authenticator, testUser, updateUser)
+router.post("/register", rateLimiter, register)
+router.post("/login", rateLimiter, login)
+router.patch("/updateUser", authenticateUser, testUser, updateUser)
 
 module.exports = router

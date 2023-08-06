@@ -1,5 +1,5 @@
 {
-  "name": "jobster-api",
+  "name": "06-jobs-api",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -7,10 +7,11 @@
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
-  "author": "Rajeev Singh Jadon",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
