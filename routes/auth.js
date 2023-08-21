@@ -8,7 +8,7 @@ const apiRateLimiter = require("express-rate-limit")
 
 const rateLimiter = apiRateLimiter({
   windowMs: 10 * 60 * 1000,
-  max: 5,
+  max: 50,
   message: {
     msg: "Too many request from this IP please try again after 10 mins...",
   },
